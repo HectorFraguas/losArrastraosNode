@@ -11,7 +11,7 @@ router.get('/all', (req,res) => {
     })
 })
 
-// http://localhost:3000/ruta/:id
+// http://localhost:3000/rutas/:id
 router.get('/:id', (req, res) => {
     console.log(req.params)
     rutasModel.getRuta(req.params.id, (err,rowsr) => {
@@ -53,5 +53,15 @@ router.post('/agregarcomentario', (req, res) => {
         res.json(rows)
     })
 })
+
+// http://localhost:3000/rutas/borrarcomentario
+router.post('/borrarcomentario', (req, res) => {
+    console.log(req.body)
+    rutasModel.deletedComentario(req.body.id, (err, rows) => {
+        if(err) return console.log(err.message)
+        res.json(rows)
+    })
+})
+
 
 module.exports = router;

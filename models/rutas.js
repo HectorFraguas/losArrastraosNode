@@ -9,7 +9,7 @@ let getAll = (done) => {
 }
 
 let getRuta = (id, done) => {
-    db.get().query('SELECT r.id AS idRuta, r.provincia, r.salida, r.llegada, r.descripcion, r.tipoRuta, r.latitud, r.longitud, r.fk_usuarios, u.id, u.nombre, u.usuario, u.email, u.imagen, u.token from rutas as r, usuarios as u WHERE r.id = ? AND r.fk_usuarios = u.id', [id], (err, result) => {
+    db.get().query('SELECT r.id AS idRuta, r.titulo, r.provincia, r.salida, r.llegada, r.descripcion, r.tipoRuta, r.latitud, r.longitud, r.fk_usuarios, u.id, u.nombre, u.usuario, u.email, u.imagen, u.token from rutas as r, usuarios as u WHERE r.id = ? AND r.fk_usuarios = u.id', [id], (err, result) => {
         if(err) return done(err)
         done(null, result) 
     })
@@ -44,8 +44,16 @@ let agregarComentarioRuta = ({token, fk_ruta, comentario}, done) => {
 }
 
 let recuperarComentarios = (id, done) => {
-    db.get().query('SELECT c.comentario, u.usuario as usuarioComentario, u.token as tokenUsuario FROM comentarios AS c JOIN usuarios AS u WHERE c.fk_ruta = ? AND c.fk_usuario = u.id', [id], (err, result) => {
+    db.get().query('SELECT c.id as idComentario, c.comentario, u.usuario as usuarioComentario, u.token as tokenUsuario FROM comentarios AS c JOIN usuarios AS u WHERE c.fk_ruta = ? AND c.fk_usuario = u.id', [id], (err, result) => {
         if(err) return done(err)
+        done(null, result)
+    })
+}
+
+let deletedComentario = (id, done) => {
+    db.get().query('DELETE FROM comentarios WHERE id = ?', [id], (err, result) => {
+        if(err) return done(err)
+        console.log('entra query', result)
         done(null, result)
     })
 }
@@ -58,5 +66,6 @@ module.exports = {
     filtroRutas: filtroRutas,
     getRuta: getRuta,
     agregarComentarioRuta: agregarComentarioRuta,
-    recuperarComentarios: recuperarComentarios
+    recuperarComentarios: recuperarComentarios,
+    deletedComentario: deletedComentario
 }
