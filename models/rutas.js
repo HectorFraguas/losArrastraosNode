@@ -53,7 +53,6 @@ let recuperarComentarios = (id, done) => {
 let deletedComentario = (id, done) => {
     db.get().query('DELETE FROM comentarios WHERE id = ?', [id], (err, result) => {
         if(err) return done(err)
-        console.log('entra query', result)
         done(null, result)
     })
 }
