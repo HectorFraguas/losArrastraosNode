@@ -13,7 +13,7 @@ router.get('/', (req,res) => {
 
 // http://localhost:3000/socios/new
 router.post('/new', (req, res) => {
-    console.log(req.body)
+    // console.log(req.body)
     socioModel.create(req.body, (err, result) => {
         if(err) return console.log(err.message)
         res.json(result)
@@ -22,7 +22,7 @@ router.post('/new', (req, res) => {
 
 // http://localhost:3000/socios/delete/??
 router.get('/delete/:id', (req, res) => {
-    console.log(req.params)
+    // console.log(req.params)
     socioModel.getDelete(req.params.id, (err, rows) => {
         res.json(rows)
     })

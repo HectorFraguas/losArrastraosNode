@@ -31,7 +31,7 @@ router.post('/login', (req, res) => {
 router.post('/new', (req, res) => {
     loginModel.createRegistro(req.body, (err, result) => {
         // console.log(req.body)
-        console.log(err)
+        // console.log(err)
         if(err) return res.json({error: 'Usuario y/o email ya estan registrados' })
         res.json(result)
     })

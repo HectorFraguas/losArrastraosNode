@@ -2,7 +2,7 @@ const db = require('../db')
 
 
 let getAll = (done) => {
-    db.get().query('select * from rutas', (err, rows) => {
+    db.get().query('SELECT r.id, r.titulo, r.provincia, r.salida, r.llegada, r.descripcion, r.tipoRuta, r.latitud, r.longitud, r.latllegada, r.longllegada, r.fk_usuarios, u.usuario, u.imagen from rutas AS r, usuarios AS u WHERE r.fk_usuarios = u.id', (err, rows) => {
         if(err) return done(err)
         done(null, rows)
     })
