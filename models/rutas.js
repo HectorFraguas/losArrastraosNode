@@ -9,7 +9,7 @@ let getAll = (done) => {
 }
 
 let getRuta = (id, done) => {
-    db.get().query('SELECT r.id AS idRuta, r.titulo, r.provincia, r.salida, r.llegada, r.descripcion, r.tipoRuta, r.latitud, r.longitud, r.fk_usuarios, u.id, u.nombre, u.usuario, u.email, u.imagen, u.token from rutas as r, usuarios as u WHERE r.id = ? AND r.fk_usuarios = u.id', [id], (err, result) => {
+    db.get().query('SELECT r.id AS idRuta, r.titulo, r.provincia, r.salida, r.llegada, r.descripcion, r.tipoRuta, r.latitud, r.longitud, r.latllegada, r.longllegada, r.fk_usuarios, u.id, u.nombre, u.usuario, u.email, u.imagen, u.token from rutas as r, usuarios as u WHERE r.id = ? AND r.fk_usuarios = u.id', [id], (err, result) => {
         if(err) return done(err)
         done(null, result) 
     })
@@ -22,8 +22,8 @@ let filtroRutas = (provincia, tipoRuta, done) => {
     })
 }
 
-let createRuta = ({titulo, provincia, salida, llegada, descripcion, tipoRuta, latitud, longitud, token}, done) => {
-        db.get().query('insert into rutas values (NULL, ?, ?, ?, ?, ?, ?, ?, ?, (SELECT id FROM usuarios WHERE token = ?));', [titulo, provincia, salida, llegada, descripcion, tipoRuta, latitud, longitud, token], (err, result) => {
+let createRuta = ({titulo, provincia, salida, llegada, descripcion, tipoRuta, latitud, longitud, latllegada, longllegada, token}, done) => {
+        db.get().query('insert into rutas values (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, (SELECT id FROM usuarios WHERE token = ?));', [titulo, provincia, salida, llegada, descripcion, tipoRuta, latitud, longitud, latllegada, longllegada, token], (err, result) => {
             if(err) return done(err)
             done(null, result)
         })

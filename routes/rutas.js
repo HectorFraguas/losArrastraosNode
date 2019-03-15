@@ -13,7 +13,6 @@ router.get('/all', (req, res) => {
 
 // http://localhost:3000/rutas/:id
 router.get('/:id', (req, res) => {
-    console.log(req.params)
     rutasModel.getRuta(req.params.id, (err, rowsr) => {
         rutasModel.recuperarComentarios(req.params.id, (err, rowsc) => {
             rowsr[0].comentarios = rowsc
