@@ -16,7 +16,7 @@ let getRuta = (id, done) => {
 }
 
 let filtroRutas = (provincia, tipoRuta, done) => {
-    db.get().query('select * from rutas where provincia = ? and tipoRuta = ?', [provincia, tipoRuta], (err,result) => {
+    db.get().query('select r.id AS idRuta, r.titulo, r.provincia, r.salida, r.llegada, r.descripcion, r.tipoRuta, r.latitud, r.longitud, r.latllegada, r.longllegada, r.fk_usuarios, u.usuario, u.imagen from rutas AS r, usuarios AS u WHERE r.provincia = ? and r.tipoRuta = ? AND r.fk_usuarios = u.id', [provincia, tipoRuta], (err,result) => {
         if(err) return done(err)
         done(null, result)
     })
