@@ -12,6 +12,7 @@ const sociosRouter = require('./routes/socios');
 const loginRouter = require('./routes/login')
 const rutasRouter = require('./routes/rutas')
 const perfilRouter = require('./routes/perfil')
+const mailRouter = require('./routes/mail')
 
 
 var app = express();
@@ -32,6 +33,8 @@ app.use('/socios',sociosRouter)
 app.use('/login', loginRouter)
 app.use('/rutas', rutasRouter)
 app.use('/perfil', perfilRouter)
+app.use('/mail', mailRouter)
+
 
 
 
