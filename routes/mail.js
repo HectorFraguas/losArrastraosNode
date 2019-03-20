@@ -28,7 +28,7 @@ router.post('/', (req, res) => {
         }
         else{
           console.log(info);
-          res.json('El email a sido enviado correctamente')
+          res.json('El email ha sido enviado correctamente')
         }
      });
 })
