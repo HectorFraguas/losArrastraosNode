@@ -3,12 +3,19 @@ const mysql = require('mysql')
 let pool = null
 
 let connect = (done) => {
+    // pool = mysql.createPool({
+    //     host: '127.0.0.1',
+    //     user: 'root',
+    //     password: '',
+    //     port: 3306,
+    //     database: 'los_arrastraos'
+    // })
     pool = mysql.createPool({
-        host: '127.0.0.1',
-        user: 'root',
-        password: '',
+        host: 'localhost',
+        user: 'losarras_web',
+        password: 'Leoncete46',
         port: 3306,
-        database: 'los_arrastraos'
+        database: 'losarras_production'
     })
     done()
 }
